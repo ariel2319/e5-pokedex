@@ -26,7 +26,7 @@ const InputName = () => {
       <div>
         <h2 style={{ textAlign: "center" }}>Hello Pokémon master !!</h2>
         <div> 
-          
+          <img src="red.png" alt="" />
         </div>
         <input
           name='name'

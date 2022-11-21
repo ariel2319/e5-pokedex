@@ -5,7 +5,7 @@
   --main-text-color: DarkSlateGray;
   --secondary-text-color: GhostWhite;
   --accent-color: dodgerblue;
-  --poke-red: #D93F3F;
+  --poke-red: #D93F3F; 
 }
 
 @font-face {
@@ -38,7 +38,7 @@ body {
 }
 .pokedex-name {
   width: 400px;
-  margin-top: 100px; 
+  margin-top: 100px;
 }
 
 /* ************ Pokemones ************** */
@@ -89,6 +89,16 @@ button {
   text-align: center;
 }
 
+.pokedex {
+  width: 400px;
+  margin-top: 30px;
+}
+
+.search-container {
+  width: 45%;
+  margin: 15px;
+}
+
 .card-container {
   display: flex;
   max-width: 1200px;
@@ -101,16 +111,13 @@ button {
   padding: 15px;
 }
 
-.pokedex {
-  width: 400px;
-  margin-top: 30px;
+.card {
+  perspective: 1000px;
+  width: 260px;
+  height: 380px;
+  position: relative;
+  margin: 5px;
 }
-
-.search-container {
-  width: 45%;
-  margin: 15px;
-}
-
 
 /* ************** CARD FRONT ************** */
 .card-front {
@@ -139,10 +146,142 @@ button {
   letter-spacing: 4px;
   margin: 5px 0p;
   color: var(--bg-color);
-  filter: drop-shadow(2px 2px 5px rgba(230, 207, 2, 0.5));
+  /* filter: drop-shadow(2px 2px 5px rgba(230, 207, 2, 0.5)); */
 }
 
 /* ************** CARD BACK ************** */
+.card-back {
+  width: 260px;
+  height: 380px;
+  border: 0.1px outset rgba(255, 255, 255, 0.1);
+}
+
+.back-type {
+  width: 260px;
+  height: 35%;
+  display: flex;
+  justify-content: center;
+}
+
+.back-image {
+  margin: 5px 0 20px 0;
+  width: 150px;
+  height: 150px;
+  /* border: 1px solid purple; */
+}
+
+.back-info {
+  width: 260px;
+  height: 65%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.back-name {
+  margin: 5px 0;
+  text-align: center;
+  font-family: Pokemon Solid;
+  font-size: 1.6em;
+  /* border: 1px solid purple; */
+}
+
+.back-type {
+  font-size: 1.1em;
+  margin-top: 0px;
+  /* border: 1px solid purple; */
+}
+
+.back-info-container {
+  display: grid;
+  place-content: center;
+  /* border: 1px solid purple; */
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.center-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.back-center-line {
+  width: 100%;
+  height: 5px;
+  background-color: black;
+  position: absolute;
+}
+.back-center-white {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+}
+.back-center {
+  width: 30px;
+  height: 30px;
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+}
+
+h4 {
+  text-align: center;
+  margin: 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 0.8em;
+  line-height: 20px;
+  filter: drop-shadow(2px 2px 5px rgba(255, 255, 255, 0.1));
+}
+
+/* ************** CARD TURN ************** */
+.card .card-front {
+  position: absolute;
+  transform: rotateY(0deg);
+  backface-visibility: visible;
+  transition: transform 0.4s linear;
+}
+
+.card .card-back {
+  position: absolute;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  transition: transform 0.4s linear;
+}
+
+.card:hover .card-back {
+  transform: rotateY(0deg);
+  cursor: pointer;
+}
+
+.card:hover .card-front {
+  transform: rotateY(180deg);
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* a:-webkit-any-link {
   color: -webkit-link;
   cursor: pointer;
@@ -150,26 +289,22 @@ button {
   width: min-content;
   height: min-content;
   border: 2px solid purple;
-}
+}*/
 
 a:-webkit-any-link {
-  color: var(--secondary-text-color);
-  cursor: pointer;
-  border: 2px solid purple;
-  width: min-content;
-  height: min-content;
-} */
+  color: black;
+}
 
 /* ************** FULL CARD ************** */
-.poke-props{
+.poke-props {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.full-container{
+
+.full-container {
   display: grid;
   place-content: center;
   border: 1px solid greenyellow
 }
-

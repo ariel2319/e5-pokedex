@@ -92,7 +92,7 @@ const Pokemones = () => {
       <div className='card-container'>
         {
           pkm.map(pokemonsito => (
-            <div key={pokemonsito.url}>
+            <div className='card' key={pokemonsito.url}>
 
               <PokemonSpecific
                 UrlPkm={pokemonsito.url ? pokemonsito.url : pokemonsito.pokemon.url}
