@@ -1,0 +1,175 @@
+:root {
+  line-height: 25px;
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+  --bg-color: #fff;
+  --main-text-color: DarkSlateGray;
+  --secondary-text-color: GhostWhite;
+  --accent-color: dodgerblue;
+  --poke-red: #D93F3F;
+}
+
+@font-face {
+  font-family: Pokemon Hollow;
+  src: url(./assets/Pokemon-Hollow.ttf);
+}
+
+@font-face {
+  font-family: Pokemon Solid;
+  src: url(./assets/Pokemon-Solid.ttf);
+}
+
+body {
+  max-width: 1200px;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-color);
+  font-family: Pokemon Hollow;
+  background-image: url(./assets/dark-wall.jpg);
+  background-position: center;
+  background-size: cover;
+  margin: 0 auto;
+  color: var(--bg-color)
+}
+
+/* ************** NAME ************** */
+.container-name {
+  display: grid;
+  place-items: center;
+}
+.pokedex-name {
+  width: 400px;
+  margin-top: 100px; 
+}
+
+/* ************ Pokemones ************** */
+.container-maximus {
+  max-width: 1100px;
+  height: 100vh;
+  /* border: 2px solid crimson; */
+  display: grid;
+  place-items: center;
+}
+
+.search-container {
+  width: 500px;
+  padding: 15px;
+}
+
+.search-choose {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  width: 300px;
+  height: 43px;
+  border: 0;
+  background-color: var(--bg-color);
+  border-color: transparent;
+  box-shadow: var(--shadow);
+}
+
+button {
+  width: 100px;
+  height: 45px;
+  border-color: transparent;
+  background-color: var(--poke-red);
+  box-shadow: var(--shadow);
+  color: var(--bg-color);
+}
+
+.select {
+  width: 200px;
+  height: 45px;
+  margin-left: 15px;
+  border-color: transparent;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.card-container {
+  display: flex;
+  max-width: 1200px;
+  height: 100%;
+  /* border: 2px solid purple; */
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 15px;
+}
+
+.pokedex {
+  width: 400px;
+  margin-top: 30px;
+}
+
+.search-container {
+  width: 45%;
+  margin: 15px;
+}
+
+
+/* ************** CARD FRONT ************** */
+.card-front {
+  /* background-color: #5f5f; */
+  width: 260px;
+  height: 380px;
+  display: flex;
+  border: 0.1px outset rgba(255, 255, 255, 0.1);
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  box-shadow: var(--shadow);
+}
+
+.front-image {
+  margin-top: 25px;
+  width: 245px;
+  height: 245px;
+  /* border: 2px solid purple; */
+  filter: drop-shadow(2px 2px 2px rgba(255, 254, 254, 0.5));
+}
+
+.front-name {
+  bottom: 2%;
+  font-size: 2.3em;
+  letter-spacing: 4px;
+  margin: 5px 0p;
+  color: var(--bg-color);
+  filter: drop-shadow(2px 2px 5px rgba(230, 207, 2, 0.5));
+}
+
+/* ************** CARD BACK ************** */
+/* a:-webkit-any-link {
+  color: -webkit-link;
+  cursor: pointer;
+  text-decoration: underline;
+  width: min-content;
+  height: min-content;
+  border: 2px solid purple;
+}
+
+a:-webkit-any-link {
+  color: var(--secondary-text-color);
+  cursor: pointer;
+  border: 2px solid purple;
+  width: min-content;
+  height: min-content;
+} */
+
+/* ************** FULL CARD ************** */
+.poke-props{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.full-container{
+  display: grid;
+  place-content: center;
+  border: 1px solid greenyellow
+}
+
