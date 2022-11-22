@@ -25,9 +25,7 @@ const InputName = () => {
       <img className='pokedex-name' src="https://fontmeme.com/permalink/221120/8b3e75c6bdcb42d12038f59e34ed1903.png" alt="doblar-imagenes" border="0" />
       <div>
         <h2 style={{ textAlign: "center" }}>Hello Pokémon master !!</h2>
-        <div> 
-          <img src="red.png" alt="" />
-        </div>
+        
         <input
           name='name'
           id='nme'
@@ -36,10 +34,6 @@ const InputName = () => {
           placeholder='Tell me your name to continue!'
           onChange={e => setUserName(e.target.value)}
         />
-
-        {/* <label htmlFor="nme" className='input-label'> <span> master </span>
-
-      </label> */}
 
         <button onClick={enterName}>
           GO!!

@@ -41,7 +41,7 @@ const Pokemones = () => {
       .then(res => setPkm(res.data.pokemon))
   }
 
-  console.log("pkm....", pkm, "type.....", typePkm)
+  /* console.log("pkm....", pkm, "type.....", typePkm) */
 
 
 
