@@ -5,8 +5,7 @@ import { Link } from 'react-router-dom';
 const PokemonSpecific = ({ UrlPkm }) => {
 
   const [pkmData, setPkmData] = useState({})
-  const [colorType, setColorType] = useState("crimson")
-
+  
   useEffect(() => {
     axios
       .get(UrlPkm)
@@ -17,6 +16,44 @@ const PokemonSpecific = ({ UrlPkm }) => {
 
   let name = pkmData.name;
 
+  const colorType = {
+                grass : '#78C850', 
+                water : '#3899F8',
+                fire : '	#F05030',
+                normal : '#A8A090',
+                fighting: '#A05038',
+                flying: '#98A8F0',
+                poison: '#B058A0',
+                ground: '#E9D6A4',
+                rock: '#B8A058',
+                bug: '#A8B820',
+                ghost: '#6060B0',
+                steel: '#A8A8C0',
+                electric: '#F8D030',
+                psychic: '#F870A0',
+                ice: '#58C8E0',
+                dragon: '#7860E0',
+                dark: '#7A5848',
+                fairy: '#E79FE7',
+                unknown: '',
+                shadow: ''
+                  }
+  
+  const colorStyle = () => {
+    let bgColor = {background: 'red'} 
+    if (pkmData) {
+      if (pkmData.types?.[0]) {
+        bgColor = {background: colorType[pkmData.types?.[0].type.name]}
+      }
+
+      if (pkmData.types?.[0] && pkmData.types?.[1]){
+        bgColor = {
+          background: `linear-gradient(${colorType[pkmData.types?.[0].type.name]}, ${colorType[pkmData.types?.[1].type.name]})`
+        }
+      }
+    }
+    return bgColor
+  } 
 /* const colorTypeList = [{type: "normal", color: "pink"},{type:"grass", color:"green"},{type:"water", color:"blue"}, {type:"fire",color:"crimson"}]
 let colorType = colorTypeList.filter(color => pkmData.types?.[0].type.name === "grass" ) */
 
@@ -24,26 +61,22 @@ let colorType = colorTypeList.filter(color => pkmData.types?.[0].type.name === "
     <Link style={{ textDecoration: "none", textDecorationColor: "white" }} to={`/pokemonprop/${pkmData.id}`}>
 
       <div className='card-front' style={{ backgroundColor: "transparent" }}>
-        <h3>{colorType}</h3>
-        <img className='front-image' src={pkmData.sprites?.other.dream_world?.front_default} alt="" />
+        {/* <h3>{colorType}</h3> */}
+        <img className='front-image' src={pkmData.sprites?.other.dream_world?.front_default === null ? pkmData.sprites?.other.home?.front_default : pkmData.sprites?.other.dream_world?.front_default} alt="" />
 
-        <h2 className='front-name' style={{ filter: `drop-shadow(2px 2px 2px ${colorType}` }}>
+        <h2 className='front-name' style={{ filter: `drop-shadow(2px 2px 2px ${colorType[pkmData.types?.[0].type.name]}` }}>
           {name?.toUpperCase()}
         </h2>
-
       </div>
 
-
-
       <div className='card-back' >
-
-        <div className="back-type" style={{ backgroundColor: `${colorType}` }}>
-          <img className='back-image' src={pkmData.sprites?.other.dream_world?.front_default} alt="" />
+        <div className="back-type" style={colorStyle()}>
+          <img className='back-image' src={pkmData.sprites?.other.dream_world?.front_default === null ? pkmData.sprites?.other.home?.front_default : pkmData.sprites?.other.dream_world?.front_default } alt="" />
         </div>
 
         <div className="back-info" >
           <div className='back-name-container'>
-            <h2 style={{ color: `${colorType}`, filter: `drop-shadow(2px 2px 2px black` }} className='back-name'>
+            <h2 style={{ color: `${colorType[pkmData.types?.[0].type.name]}`, filter: `drop-shadow(2px 2px 2px black` }} className='back-name'>
               {name?.toUpperCase()}
             </h2>
             <h2 className='back-type' style={{ filter: `drop-shadow(2px 2px 2px black` }}>

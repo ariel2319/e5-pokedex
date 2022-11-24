@@ -72,6 +72,7 @@ const Pokemones = () => {
           </button>
 
           <select className='select' onChange={filterType} name="" id="">
+            <option value="Pokémon type">Pokémon type</option>
             {
               typePkm.map((type) => (
                 <option
