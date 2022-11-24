@@ -83,7 +83,10 @@ const PokemonProp = () => {
         <div className='prop-title'>
 
           <div className='prop-image-container'>
-            <img className='prop-image' src={charPkm?.sprites?.other.dream_world.front_default === null ? charPkm?.sprites?.other.home.front_default : charPkm?.sprites?.other.dream_world.front_default} alt="poke" />
+            <img
+              className='prop-image'
+              src={charPkm?.sprites?.other.dream_world.front_default === null ? charPkm?.sprites?.other.home.front_default : charPkm?.sprites?.other.dream_world.front_default}
+              alt="poke" />
           </div>
 
           <div className='prop-name-container'>
@@ -104,23 +107,35 @@ const PokemonProp = () => {
             </div>
             <h3> <b> Type: </b></h3>
             <div className='prop-abilities'>
-              <div style={{ background: `${colorType[charPkm.types?.[0]?.type.name]}`, padding: '0px 5px' }}> <div className='prop-stats-rectangle'> {charPkm.types?.[0].type.name} </div></div>
-              <div style={{ background: `${colorType[charPkm.types?.[1]?.type.name]}`, padding: '0px 5px' }}>
-                <div className='prop-stats-rectangle'> {charPkm.types?.[1]?.type.name === undefined ? undefined : ` ${charPkm.types?.[1].type.name}`} </div>
+              <div style={{ background: `${colorType[charPkm.types?.[0]?.type.name]}`, padding: '0px 3px', borderRadius: '4px', margin: '3px' }}>
+                <div className='prop-stats-rectangle'>
+                  {charPkm.types?.[0].type.name}
+                </div>
               </div>
+              {
+                charPkm.types?.[1]?.type.name === undefined ? ' ' :
+                  <div style={{ background: `${colorType[charPkm.types?.[1]?.type.name]}`, padding: '0px 3px', borderRadius: '4px', margin: '3px' }}>
+                    <div className='prop-stats-rectangle'>
+                      {charPkm.types?.[1]?.type.name === undefined ? undefined : ` ${charPkm.types?.[1].type.name}`}
+                    </div>
+                  </div>
+              }
+
             </div>
 
             <h3> <b> Abilities:</b> </h3>
             <div className='prop-abilities'>
-              <div style={{ background: `${colorType[charPkm.types?.[0]?.type.name]}`, padding: '0px 5px' }}>
+              <div style={{ padding: '0px 3px' }}>
                 <div className='prop-stats-rectangle'>
                   {charPkm.abilities?.[0].ability.name}
                 </div>
               </div>
+              {charPkm.abilities?.[1]?.ability.name === undefined ? "" :
 
-              <div style={{ background: `${colorType[charPkm.types?.[0]?.type.name]}`, padding: '0px 5px' }}>
-                <div className='prop-stats-rectangle'> {charPkm.abilities?.[1].ability.name === undefined ? "" : `${charPkm.abilities?.[1].ability.name}`} </div>
-              </div>
+                <div style={{ padding: '0px 3px' }}>
+                  <div className='prop-stats-rectangle'> {charPkm.abilities?.[1].ability.name} </div>
+                </div>
+              }
             </div>
 
           </div>
@@ -163,8 +178,8 @@ const PokemonProp = () => {
         </div>
       </div>
 
-      <div className="prop-moves">
-        <h1 className='prop-name-title'>MOVES</h1>
+      <div className="prop-moves" style={colorStyle()}>
+        <h1 className='prop-name-title'> MOVES </h1>
         <div className='moves'>
           {
             charPkm.moves?.map((movePkm) => (

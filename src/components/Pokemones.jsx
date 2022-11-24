@@ -21,7 +21,7 @@ const Pokemones = () => {
 
   useEffect(() => {
     axios
-      .get(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=10`)
+      .get(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=50`)
       .then(res => setPkm(res.data.results))
 
     axios
@@ -42,19 +42,30 @@ const Pokemones = () => {
   }
 
   /* console.log("pkm....", pkm, "type.....", typePkm) */
+  /* PAGINACIÓN::....... */
+  const [page, setPage] = useState(1)
 
-
-
+  /* const page = 1; */
+  const pkmPerPage = 5;
+  const lastIndex = page * pkmPerPage;
+  const firstIndex = lastIndex - pkmPerPage;
+  const pkmPaginated = pkm.slice(firstIndex, lastIndex)
+  const totalPages = Math.ceil(pkm.length / pkmPerPage);
+  /* console.log("pkmpagintaed", pkmPaginated) */
+  const numbers = [];
+  for (let i = 1; i <= totalPages; i++) {
+    numbers.push(i);
+  }
 
   return (
     <div className='container-maximus'>
 
-      <img src="https://fontmeme.com/permalink/221120/8b3e75c6bdcb42d12038f59e34ed1903.png" alt="doblar-imagenes" border="0" className='pokedex'/>
+      <img src="https://fontmeme.com/permalink/221120/8b3e75c6bdcb42d12038f59e34ed1903.png" alt="doblar-imagenes" border="0" className='pokedex' />
 
 
       <div className='search-container'>
         <div className="search-name">
-          <h3 style={{textAlign: "center"}}>
+          <h3 style={{ textAlign: "center" }}>
             {userName} choose your Pokémon!
           </h3>
         </div>
@@ -90,9 +101,11 @@ const Pokemones = () => {
 
 
       {/* card */}
+
       <div className='card-container'>
+
         {
-          pkm.map(pokemonsito => (
+          pkmPaginated.map(pokemonsito => (
             <div className='card' key={pokemonsito.url}>
 
               <PokemonSpecific
@@ -103,6 +116,26 @@ const Pokemones = () => {
             </div>
           ))
         }
+      </div>
+
+      <div style={{display: 'flex', alignItems: 'center'}}>
+
+        <button
+          onClick={() => setPage(page - 1)}
+          disabled={page === 1}
+        > prev Page
+        </button>
+        <div>
+          {numbers.map(number => (
+            <button onClick={() => setPage(number)} style={{}} >{number}</button>
+          ))}
+        </div>
+        <button
+          onClick={() => setPage(page + 1)}
+          disabled={page === totalPages}
+        > next Page
+        </button>
+
       </div>
 
 
