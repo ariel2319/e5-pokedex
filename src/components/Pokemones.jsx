@@ -44,9 +44,9 @@ const Pokemones = () => {
   /* console.log("pkm....", pkm, "type.....", typePkm) */
   /* PAGINACIÓN::....... */
   const [page, setPage] = useState(1)
-
+  const [pkmPerPage, setPkmPerPage] = useState(9)
   /* const page = 1; */
-  const pkmPerPage = 5;
+  /* const pkmPerPage = [4, 8, 12, 16, 20]; */
   const lastIndex = page * pkmPerPage;
   const firstIndex = lastIndex - pkmPerPage;
   const pkmPaginated = pkm.slice(firstIndex, lastIndex)
@@ -55,6 +55,10 @@ const Pokemones = () => {
   const numbers = [];
   for (let i = 1; i <= totalPages; i++) {
     numbers.push(i);
+  }
+  const changePkmPerPage = (e) => {
+    setPkmPerPage(e.target.value)
+    setPage(1)
   }
 
   return (
@@ -82,19 +86,29 @@ const Pokemones = () => {
             Search
           </button>
 
-          <select className='select' onChange={filterType} name="" id="">
+          <select className='select' onChange={filterType} name="" id="" >
             <option value="Pokémon type">Pokémon type</option>
             {
               typePkm.map((type) => (
+                
                 <option
                   value={type.url}
+                  key={type.url}
                   //cambio NAME por URL xq la consumo para traer el tipo que selecciono en el SELECT
-                  /* value={type.name} */
-                  key={type.url}>
+                  /* value={type.name} */>
                   {type.name}
                 </option>
               ))
             }
+          </select>
+          <select className='select' onChange={changePkmPerPage}>
+            <option value="9"> Amount </option>
+            <option value="4">4</option>
+            <option value="8">8</option>
+            <option value="12">12</option>
+            <option value="16">16</option>
+            <option value="20">20</option>
+
           </select>
         </div>
       </div>
@@ -118,7 +132,7 @@ const Pokemones = () => {
         }
       </div>
 
-      <div style={{display: 'flex', alignItems: 'center'}}>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
 
         <button
           onClick={() => setPage(page - 1)}

@@ -90,7 +90,7 @@ let colorType = colorTypeList.filter(color => pkmData.types?.[0].type.name === "
 
             </div>
             <div style={{ color: `${colorType}`, filter: `drop-shadow(2px 2px 2px black` }} className='back-info-container'>
-              <h4>HP: <br /> <span style={{ color: "black" }}> {pkmData.stats?.[0].base_stat} </span></h4>
+              <h4>HP: <br /> <span style={{ color: "black" }} > {pkmData.stats?.[0].base_stat} </span></h4>
               <h4>ATTACK: <br /> <span style={{ color: "black" }}> {pkmData.stats?.[1].base_stat} </span></h4>
               <h4>DEFENSE: <br /> <span style={{ color: "black" }}> {pkmData.stats?.[2].base_stat} </span></h4>
               <h4>SPECIAL-ATK: <br /> <span style={{ color: "black" }}> {pkmData.stats?.[3].base_stat} </span></h4>

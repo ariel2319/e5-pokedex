@@ -99,7 +99,7 @@ const PokemonProp = () => {
             <div className='prop-stats-rectangle'> {charPkm.id}</div>
             <div className='prop-H-W'>
               <div>
-                <h3> <b> Height:</b> </h3> <div className='prop-stats-rectangle'>  {charPkm.height} </div>
+                <h3> <b> Height:</b> </h3> <div className='prop-stats-rectangle'  >  {charPkm.height} </div>
 
               </div>
               <div>
