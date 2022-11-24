@@ -44,12 +44,14 @@ const PokemonProp = () => {
     let bgColor = { background: 'red' }
     if (charPkm) {
       if (charPkm.types?.[0]) {
-        bgColor = { background: colorType[charPkm.types?.[0].type.name] }
+        bgColor = { /* background: colorType[charPkm.types?.[0].type.name]  */
+          background: `linear-gradient(${colorType[charPkm.types?.[0].type.name]}, 60%, transparent)`
+        }
       }
 
       if (charPkm.types?.[0] && charPkm.types?.[1]) {
         bgColor = {
-          background: `linear-gradient(${colorType[charPkm.types?.[0].type.name]}, ${colorType[charPkm.types?.[1].type.name]})`
+          background: `linear-gradient(${colorType[charPkm.types?.[0].type.name]}, 40%, ${colorType[charPkm.types?.[1].type.name]}, transparent)`
         }
       }
     }
