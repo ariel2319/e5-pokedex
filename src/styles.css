@@ -19,18 +19,20 @@
 }
 
 body {
-
-  max-width: 1200px;
-  width: 100vw;
-  height: 100vh;
   background-color: var(--bg-color);
   font-family: Pokemon Hollow;
-  background-image: url(./assets/dark-wall.jpg);
-  background-position: center;
-  background-size: cover;
+  
+  /* background-image: url(https://wallpapercave.com/wp/QZ9GCRj.jpg); */
+  background-image: url(https://wallpapercave.com/wp/wp5825515.jpg);  
+  background-position: 0px 0px;
+  background-size: 100vw 800px;
+  background-repeat: repeat-y;
   margin: 0 auto;
   color: var(--bg-color);
   letter-spacing: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* ************** NAME ************** */
@@ -46,8 +48,7 @@ body {
 
 /* ************ Pokemones ************** */
 .container-maximus {
-  max-width: 1100px;
-  height: 100vh;
+  max-width: 1200px;
   /* border: 2px solid crimson; */
   display: grid;
   place-items: center;
@@ -57,7 +58,9 @@ body {
   width: 500px;
   padding: 15px;
 }
-
+.search-name{
+  color: var(--poke-red);
+}
 .search-choose {
   display: flex;
   flex-direction: row;
@@ -113,18 +116,33 @@ button {
   gap: 20px;
   padding: 15px;
 }
+
 @media screen and (max-width: 1000px) {
-  .card-container{
+  .container-maximus {
+    width: 100vw;
+    height: 100vh;
+
+  }
+
+  .card-container {
     width: 95%;
   }
 }
+
 @media screen and (max-width: 700px) {
-  .card-container{
-    display: grid;
+  .card-container {
+    /*  display: grid;
     grid-template-columns: repeat(2, 1fr);
-    justify-items: center;
+    justify-items: center; */
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
   }
 }
+
 .card {
   perspective: 1000px;
   width: 260px;
@@ -294,13 +312,49 @@ a:-webkit-any-link {
   color: black;
 }
 
+/* ************** BUTTONS ************** */
+.btn-container {
+  width: 1100px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.btn-page {
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid whitesmoke;
+}
+
+.btn-numbers-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.btn-number {
+  width: 50px;
+  height: 35px;
+  border-radius: 3px;
+  margin: 5px;
+}
+
+
+
+
+
 /* ************** FULL CARD ************** */
 .poke-props {
+  width: 1100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
+
 
 .full-container {
   width: 60%;
@@ -434,8 +488,17 @@ h3 {
 }
 
 @media screen and (max-width: 1000px) {
+  .full-container {
+    width: 600px;
+  }
+
   .prop-title {
     grid-template-columns: repeat(1, 1fr);
+  }
+
+  .prop-moves {
+    width: 600px;
+    margin: 20px 0px 0px 0px;
   }
 
   .moves {
@@ -444,8 +507,22 @@ h3 {
 }
 
 @media screen and (max-width: 750px) {
+  .poke-props {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .prop-stats-container {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .full-container {
+    width: 400px;
+  }
+
+  .prop-moves {
+    width: 400px;
   }
 
   .prop-image-container {
@@ -454,8 +531,8 @@ h3 {
   }
 
   .prop-image {
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
   }
 
   .moves {
@@ -463,6 +540,16 @@ h3 {
   }
 }
 
+li::marker{
+  content: none;
+}
+.back-container{
+  margin: 15px;
+}
+.back-arrow{
+  font-size: 30px;
+  color: crimson;
+}
 @media (prefers-color-scheme: dark),
 (prefers-color-scheme: no-preference) {
 

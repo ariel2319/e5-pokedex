@@ -1,5 +1,5 @@
 import './styles.css'
-import { HashRouter, Route, Routes } from 'react-router-dom'
+import { HashRouter, Link, Route, Routes } from 'react-router-dom'
 import PokemonProp from './components/PokemonProp'
 import Pokemones from './components/Pokemones'
 import InputName from './components/InputName'
@@ -13,19 +13,18 @@ function App() {
 
     <HashRouter>
 
-     
 
       <Routes>
 
         <Route path='/' element={<InputName />}></Route>
 
-
         {/* para proteger estas rutas necesito encerrarlas en una ruta nueva
          */}
-        <Route element={<ProtectedRoutes/>} >
+        <Route element={<ProtectedRoutes />} >
           <Route path='/pokemones' element={<Pokemones />}></Route>
           <Route path='/pokemonprop/:id' element={<PokemonProp />}></Route>
         </Route>
+
       </Routes>
 
     </HashRouter>

@@ -24,7 +24,7 @@ const InputName = () => {
     <div className='container-name'>
       <img className='pokedex-name' src="https://fontmeme.com/permalink/221120/8b3e75c6bdcb42d12038f59e34ed1903.png" alt="doblar-imagenes" border="0" />
       <div>
-        <h2 style={{ textAlign: "center" }}>Hello Pokémon master !!</h2>
+        <h2 style={{ textAlign: "center", color: 'crimson' }}>Hello Pokémon master !!</h2>
         
         <input
           name='name'

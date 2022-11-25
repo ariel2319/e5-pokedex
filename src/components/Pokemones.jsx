@@ -2,7 +2,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import PokemonSpecific from './PokemonSpecific';
 
 
@@ -21,7 +21,7 @@ const Pokemones = () => {
 
   useEffect(() => {
     axios
-      .get(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=50`)
+      .get(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=100`)
       .then(res => setPkm(res.data.results))
 
     axios
@@ -62,97 +62,110 @@ const Pokemones = () => {
   }
 
   return (
-    <div className='container-maximus'>
+    <div>
+      <nav className='back-container'>
+        <li><Link to={'/'}>
+          <i className="fa-solid fa-angles-left back-arrow"></i>
+        </Link></li>
+      </nav>
 
-      <img src="https://fontmeme.com/permalink/221120/8b3e75c6bdcb42d12038f59e34ed1903.png" alt="doblar-imagenes" border="0" className='pokedex' />
+      <div className='container-maximus'>
+
+        <img src="https://fontmeme.com/permalink/221120/8b3e75c6bdcb42d12038f59e34ed1903.png" alt="doblar-imagenes" border="0" className='pokedex' />
 
 
-      <div className='search-container'>
-        <div className="search-name">
-          <h3 style={{ textAlign: "center" }}>
-            {userName} choose your Pokémon!
-          </h3>
-        </div>
-        <div className="search-choose">
-          <input
-            type="text"
-            placeholder='Pokémon Name'
-            value={pkmName}
-            onChange={(e) => setPkmName(e.target.value)}
-            style={{ textAlign: 'center' }}
-          />
+        <div className='search-container'>
+          <div className="search-name">
+            <h3 style={{ textAlign: "center", margin: '15px' }}>
+              {userName.toUpperCase()}, choose your Pokémon!!
+            </h3>
+          </div>
+          <div className="search-choose">
+            <input
+              type="text"
+              placeholder='Pokémon Name'
+              value={pkmName}
+              onChange={(e) => setPkmName(e.target.value)}
+              style={{ textAlign: 'center' }}
+            />
 
-          <button onClick={searchPkm}>
-            Search
-          </button>
+            <button onClick={searchPkm}>
+              Search
+            </button>
 
-          <select className='select' onChange={filterType} name="" id="" >
-            <option value="Pokémon type">Pokémon type</option>
-            {
-              typePkm.map((type) => (
-                
-                <option
-                  value={type.url}
-                  key={type.url}
+            <select className='select' onChange={filterType} name="" id="" >
+              <option value="Pokémon type">Pokémon type</option>
+              {
+                typePkm.map((type) => (
+
+                  <option
+                    value={type.url}
+                    key={type.url}
                   //cambio NAME por URL xq la consumo para traer el tipo que selecciono en el SELECT
                   /* value={type.name} */>
-                  {type.name}
-                </option>
+                    {type.name}
+                  </option>
+                ))
+              }
+            </select>
+            <select className='select' onChange={changePkmPerPage}>
+              <option value="9"> Amount </option>
+              <option value="4">4</option>
+              <option value="8">8</option>
+              <option value="12">12</option>
+              <option value="16">16</option>
+              <option value="20">20</option>
+
+            </select>
+          </div>
+        </div>
+
+
+        {/* card */}
+
+        <div className='card-container'>
+
+          {
+            pkmPaginated.map(pokemonsito => (
+              <div className='card' key={pokemonsito.url}>
+
+                <PokemonSpecific
+                  UrlPkm={pokemonsito.url ? pokemonsito.url : pokemonsito.pokemon.url}
+                  key={pokemonsito.url ? pokemonsito.url : pokemonsito.pokemon.url}
+                />
+
+              </div>
+            ))
+          }
+        </div>
+
+        <div className='btn-container'>
+
+          <button className='btn-page prev'
+            onClick={() => setPage(page - 1)}
+            disabled={page === 1}
+          >
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+
+          <div className='btn-numbers-container'>
+            {
+              numbers.map(number => (
+                <button className='btn-number' onClick={() => setPage(number)} style={{}} >{number}</button>
               ))
             }
-          </select>
-          <select className='select' onChange={changePkmPerPage}>
-            <option value="9"> Amount </option>
-            <option value="4">4</option>
-            <option value="8">8</option>
-            <option value="12">12</option>
-            <option value="16">16</option>
-            <option value="20">20</option>
+          </div>
 
-          </select>
+          <button className='btn-page next'
+            onClick={() => setPage(page + 1)}
+            disabled={page === totalPages}
+          >
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+
         </div>
-      </div>
-
-
-      {/* card */}
-
-      <div className='card-container'>
-
-        {
-          pkmPaginated.map(pokemonsito => (
-            <div className='card' key={pokemonsito.url}>
-
-              <PokemonSpecific
-                UrlPkm={pokemonsito.url ? pokemonsito.url : pokemonsito.pokemon.url}
-                key={pokemonsito.url ? pokemonsito.url : pokemonsito.pokemon.url}
-              />
-
-            </div>
-          ))
-        }
-      </div>
-
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-
-        <button
-          onClick={() => setPage(page - 1)}
-          disabled={page === 1}
-        > prev Page
-        </button>
-        <div>
-          {numbers.map(number => (
-            <button onClick={() => setPage(number)} style={{}} >{number}</button>
-          ))}
-        </div>
-        <button
-          onClick={() => setPage(page + 1)}
-          disabled={page === totalPages}
-        > next Page
-        </button>
 
       </div>
-
-
     </div>
   );
 };

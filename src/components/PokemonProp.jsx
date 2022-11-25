@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const PokemonProp = () => {
 
@@ -78,122 +78,129 @@ const PokemonProp = () => {
 
   let nameP = charPkm.name;
   return (
-    <div className='poke-props'>
-      <img src="https://fontmeme.com/permalink/221121/9a9b6fbe3524c6d47a1c4a12cb060d1f.png" alt="fuente-pokemon" border="0" className='pokedex' />
-      <div className='full-container' style={colorStyle()}>
+    <div>
+      <nav className='back-container'>
+        <li><Link to={'/pokemones'}>
+          <i className="fa-solid fa-angles-left back-arrow"></i>
+        </Link></li>
+      </nav>
 
-        <div className='prop-title'>
+      <div className='poke-props'>
+        <img src="https://fontmeme.com/permalink/221121/9a9b6fbe3524c6d47a1c4a12cb060d1f.png" alt="fuente-pokemon" border="0" className='pokedex' />
+        <div className='full-container' style={colorStyle()}>
 
-          <div className='prop-image-container'>
-            <img
-              className='prop-image'
-              src={charPkm?.sprites?.other.dream_world.front_default === null ? charPkm?.sprites?.other.home.front_default : charPkm?.sprites?.other.dream_world.front_default}
-              alt="poke" />
-          </div>
+          <div className='prop-title'>
 
-          <div className='prop-name-container'>
-            <h1 className='prop-name-title'>
-              {nameP?.toUpperCase()}
-            </h1>
-            <h3>ID: </h3>
-            <div className='prop-stats-rectangle'> {charPkm.id}</div>
-            <div className='prop-H-W'>
-              <div>
-                <h3> <b> Height:</b> </h3> <div className='prop-stats-rectangle'  >  {charPkm.height} </div>
-
-              </div>
-              <div>
-                <h3><b> Weight:</b> </h3> <div className='prop-stats-rectangle'> {charPkm.weight} </div>
-
-              </div>
+            <div className='prop-image-container'>
+              <img
+                className='prop-image'
+                src={charPkm?.sprites?.other.dream_world.front_default === null ? charPkm?.sprites?.other.home.front_default : charPkm?.sprites?.other.dream_world.front_default}
+                alt="poke" />
             </div>
-            <h3> <b> Type: </b></h3>
-            <div className='prop-abilities'>
-              <div style={{ background: `${colorType[charPkm.types?.[0]?.type.name]}`, padding: '0px 3px', borderRadius: '4px', margin: '3px' }}>
-                <div className='prop-stats-rectangle'>
-                  {charPkm.types?.[0].type.name}
+
+            <div className='prop-name-container'>
+              <h1 className='prop-name-title'>
+                {nameP?.toUpperCase()}
+              </h1>
+              <h3>ID: </h3>
+              <div className='prop-stats-rectangle'> {charPkm.id}</div>
+              <div className='prop-H-W'>
+                <div>
+                  <h3> <b> Height:</b> </h3> <div className='prop-stats-rectangle'  >  {charPkm.height} </div>
+
+                </div>
+                <div>
+                  <h3><b> Weight:</b> </h3> <div className='prop-stats-rectangle'> {charPkm.weight} </div>
+
                 </div>
               </div>
-              {
-                charPkm.types?.[1]?.type.name === undefined ? ' ' :
-                  <div style={{ background: `${colorType[charPkm.types?.[1]?.type.name]}`, padding: '0px 3px', borderRadius: '4px', margin: '3px' }}>
-                    <div className='prop-stats-rectangle'>
-                      {charPkm.types?.[1]?.type.name === undefined ? undefined : ` ${charPkm.types?.[1].type.name}`}
-                    </div>
+              <h3> <b> Type: </b></h3>
+              <div className='prop-abilities'>
+                <div style={{ background: `${colorType[charPkm.types?.[0]?.type.name]}`, padding: '0px 3px', borderRadius: '4px', margin: '3px' }}>
+                  <div className='prop-stats-rectangle'>
+                    {charPkm.types?.[0].type.name}
                   </div>
-              }
-
-            </div>
-
-            <h3> <b> Abilities:</b> </h3>
-            <div className='prop-abilities'>
-              <div style={{ padding: '0px 3px' }}>
-                <div className='prop-stats-rectangle'>
-                  {charPkm.abilities?.[0].ability.name}
                 </div>
-              </div>
-              {charPkm.abilities?.[1]?.ability.name === undefined ? "" :
+                {
+                  charPkm.types?.[1]?.type.name === undefined ? ' ' :
+                    <div style={{ background: `${colorType[charPkm.types?.[1]?.type.name]}`, padding: '0px 3px', borderRadius: '4px', margin: '3px' }}>
+                      <div className='prop-stats-rectangle'>
+                        {charPkm.types?.[1]?.type.name === undefined ? undefined : ` ${charPkm.types?.[1].type.name}`}
+                      </div>
+                    </div>
+                }
 
+              </div>
+
+              <h3> <b> Abilities:</b> </h3>
+              <div className='prop-abilities'>
                 <div style={{ padding: '0px 3px' }}>
-                  <div className='prop-stats-rectangle'> {charPkm.abilities?.[1].ability.name} </div>
+                  <div className='prop-stats-rectangle'>
+                    {charPkm.abilities?.[0].ability.name}
+                  </div>
                 </div>
-              }
-            </div>
+                {charPkm.abilities?.[1]?.ability.name === undefined ? "" :
 
+                  <div style={{ padding: '0px 3px' }}>
+                    <div className='prop-stats-rectangle'> {charPkm.abilities?.[1].ability.name} </div>
+                  </div>
+                }
+              </div>
+
+            </div>
+          </div>
+
+          <div className='prop-stats'>
+            <h1 className='prop-name-title'>STATS: </h1>
+            <div className='prop-stats-container'>
+              <div>
+                <h4>HP</h4>
+                <div className='prop-stas-circle' style={circleColor(0)}>{charPkm.stats?.[0].base_stat}
+                </div>
+              </div>
+              <div>
+                <h4>ATTACK</h4>
+                <div className='prop-stas-circle' style={circleColor(1)}> {charPkm.stats?.[1].base_stat}
+                </div>
+              </div>
+              <div>
+                <h4>DEFENSE</h4>
+                <div className='prop-stas-circle' style={circleColor(2)}> {charPkm.stats?.[2].base_stat}
+                </div>
+              </div>
+              <div>
+                <h4>SPECIAL-ATTACK</h4>
+                <div className='prop-stas-circle' style={circleColor(3)}> {charPkm.stats?.[3].base_stat}
+                </div>
+              </div>
+              <div>
+                <h4>SPECIAL-DEFENSE</h4>
+                <div className='prop-stas-circle' style={circleColor(4)}> {charPkm.stats?.[4].base_stat}
+                </div>
+              </div>
+              <div>
+                <h4>SPEED:</h4>
+                <div className='prop-stas-circle' style={circleColor(5)}>{charPkm.stats?.[5].base_stat}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className='prop-stats'>
-          <h1 className='prop-name-title'>STATS: </h1>
-          <div className='prop-stats-container'>
-            <div>
-              <h4>HP</h4>
-              <div className='prop-stas-circle' style={circleColor(0)}>{charPkm.stats?.[0].base_stat}
-              </div>
-            </div>
-            <div>
-              <h4>ATTACK</h4>
-              <div className='prop-stas-circle' style={circleColor(1)}> {charPkm.stats?.[1].base_stat}
-              </div>
-            </div>
-            <div>
-              <h4>DEFENSE</h4>
-              <div className='prop-stas-circle' style={circleColor(2)}> {charPkm.stats?.[2].base_stat}
-              </div>
-            </div>
-            <div>
-              <h4>SPECIAL-ATTACK</h4>
-              <div className='prop-stas-circle' style={circleColor(3)}> {charPkm.stats?.[3].base_stat}
-              </div>
-            </div>
-            <div>
-              <h4>SPECIAL-DEFENSE</h4>
-              <div className='prop-stas-circle' style={circleColor(4)}> {charPkm.stats?.[4].base_stat}
-              </div>
-            </div>
-            <div>
-              <h4>SPEED:</h4>
-              <div className='prop-stas-circle' style={circleColor(5)}>{charPkm.stats?.[5].base_stat}
-              </div>
-            </div>
+        <div className="prop-moves" style={colorStyle()}>
+          <h1 className='prop-name-title'> MOVES </h1>
+          <div className='moves'>
+            {
+              charPkm.moves?.map((movePkm) => (
+                <div className='only-move' key={movePkm.move.url}>
+                  {movePkm.move.name}
+                </div>
+              ))
+            }
           </div>
         </div>
+
       </div>
-
-      <div className="prop-moves" style={colorStyle()}>
-        <h1 className='prop-name-title'> MOVES </h1>
-        <div className='moves'>
-          {
-            charPkm.moves?.map((movePkm) => (
-              <div className='only-move' key={movePkm.move.url}>
-                {movePkm.move.name}
-              </div>
-            ))
-          }
-        </div>
-      </div>
-
-
     </div >
   );
 };

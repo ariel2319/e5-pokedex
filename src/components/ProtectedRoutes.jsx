@@ -9,7 +9,7 @@ const ProtectedRoutes = () => {
 
 
 
-  if (!userName) {
+  if (userName) {
 
     return <Outlet />
 
