@@ -145,7 +145,7 @@ const Pokemones = () => {
             onClick={() => setPage(page - 1)}
             disabled={page === 1}
           >
-            <i class="fa-solid fa-chevron-left"></i>
+            <i cla="fa-solid fa-chevron-left"></i>
           </button>
 
           <div className='btn-numbers-container'>

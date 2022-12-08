@@ -7,7 +7,9 @@
   --accent-color: dodgerblue;
   --poke-red: #D93F3F;
 }
-
+*{
+  box-sizing: border-box;
+}
 @font-face {
   font-family: Pokemon Hollow;
   src: url(./assets/Pokemon-Hollow.ttf);
@@ -25,8 +27,9 @@ body {
   /* background-image: url(https://wallpapercave.com/wp/QZ9GCRj.jpg); */
   background-image: url(https://wallpapercave.com/wp/wp5825515.jpg);  
   background-position: 0px 0px;
-  background-size: 100vw 800px;
-  background-repeat: repeat-y;
+  background-size: 100vw;
+  background-attachment: fixed;
+  /* background-repeat: repeat-y; */
   margin: 0 auto;
   color: var(--bg-color);
   letter-spacing: 3px;
@@ -48,7 +51,7 @@ body {
 
 /* ************ Pokemones ************** */
 .container-maximus {
-  max-width: 1200px;
+  width: 100%;
   /* border: 2px solid crimson; */
   display: grid;
   place-items: center;
@@ -106,7 +109,7 @@ button {
 }
 
 .card-container {
-  max-width: 1200px;
+  width: 100%;
   display: flex;
   /* border: 2px solid purple; */
   flex-direction: row;
@@ -119,7 +122,7 @@ button {
 
 @media screen and (max-width: 1000px) {
   .container-maximus {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
 
   }
@@ -130,11 +133,14 @@ button {
 }
 
 @media screen and (max-width: 700px) {
+  .container-maximus{
+    width: 95%;
+  }
   .card-container {
     /*  display: grid;
     grid-template-columns: repeat(2, 1fr);
     justify-items: center; */
-    width: 70%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
