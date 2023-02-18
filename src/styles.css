@@ -26,10 +26,17 @@ body {
   
   /* background-image: url(https://wallpapercave.com/wp/QZ9GCRj.jpg); */
   background-image: url(https://wallpapercave.com/wp/wp5825515.jpg);  
-  background-position: 0px 0px;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+
+
+  /* background-position: 0px 0px;
   background-size: 100vw;
   background-attachment: fixed;
-  /* background-repeat: repeat-y; */
+  background-repeat: repeat-y; */
   margin: 0 auto;
   color: var(--bg-color);
   letter-spacing: 3px;
@@ -553,8 +560,13 @@ li::marker{
   margin: 15px;
 }
 .back-arrow{
-  font-size: 30px;
+  position: fixed;
+  font-size: 20px;
   color: crimson;
+  
+  top: 30px;
+  right: 30px;
+
 }
 @media (prefers-color-scheme: dark),
 (prefers-color-scheme: no-preference) {

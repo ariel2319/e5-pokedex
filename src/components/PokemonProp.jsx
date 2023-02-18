@@ -77,6 +77,8 @@ const PokemonProp = () => {
   }
 
   let nameP = charPkm.name;
+
+  
   return (
     <div>
       <nav className='back-container'>
